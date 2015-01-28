@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.UserDao">
+  <select id="countAll" resultType="int">
+        select count(*) c from user;
+    </select>
+    
+    <select id="selectUserbyId" parameterType="int" resultType="com.mybatis.User">
+         select * from user where id=#{id}
+    </select>
+    
+	<insert id="addUser" parameterType="com.mybatis.User" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into user(userName,userAge,userAddress)
+		values(#{userName},#{userAge},#{userAddress})
+	</insert>
+	
+	<update id="updateUser" parameterType="com.mybatis.User" >
+        update user set userName=#{userName},userAge=#{userAge},userAddress=#{userAddress} where id=#{id}
+    </update>
+    
+    <delete id="deleteUser" parameterType="com.mybatis.User" >
+        delete from user where userName=#{userName}
+    </delete>
+
+</mapper>
